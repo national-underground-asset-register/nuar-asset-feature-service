@@ -3,9 +3,12 @@
 // </copyright>
 
 using System.Data;
+using Dapper;
+using Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Helpers;
 using Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Interfaces;
 using Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Models;
 using Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Models.Layers;
+using Serilog;
 
 namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Repositories
 {
@@ -22,20 +25,25 @@ namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Repositories
         /// <summary>
         /// Initializes an instance of <see cref="LayerRepository"/>.
         /// </summary>
-        /// <param name="platformDbConfig">The database configuration</param>
-        /// <param name="logDbConnection">Whether to log database connections</param>
+        /// <param name="dbSettings">The database configuration</param>
         /// <param name="attributeRepository">The <see cref="AttributeRepository"/></param>
         /// <param name="styleRuleRepository">The <see cref="StyleRepository"/></param>
         /// <exception cref="ArgumentNullException"></exception>
-        public LayerRepository(DatabaseConfigurationSettings _dbSettings, bool logDbConnection,
-                               IAttributeRepository attributeRepository, IStyleRuleRepository styleRuleRepository) : base(
-                               platformDbConfig.ConnectionString ?? throw new ArgumentNullException(nameof(platformDbConfig.ConnectionString)), logDbConnection)
+        public LayerRepository(DatabaseConfigurationSettings dbSettings, IAttributeRepository attributeRepository, IStyleRuleRepository styleRuleRepository) : base(
+            dbSettings.ConnectionString ?? throw new ArgumentNullException(nameof(dbSettings.ConnectionString)))
         {
+            // Set the Npgsql switch to enable stored procedure compatibility mode
             AppContext.SetSwitch("Npgsql.EnableStoredProcedureCompatMode", true);
 
+            // Set additional repositories required for this repository to work
             _attributeRepository = attributeRepository;
             _styleRuleRepository = styleRuleRepository;
-            _platformDbConfig = platformDbConfig ?? throw new ArgumentNullException(nameof(platformDbConfig));
+
+            // Set the database settings object
+            _dbSettings = dbSettings ?? throw new ArgumentNullException(nameof(dbSettings));
+
+            // Register the custom mappings for the Layer model
+            SqlMapper.SetTypeMap(typeof(Layer), new ColumnAttributeTypeMapper<Layer>());
         }
 
         /// <inheritdoc/>
@@ -53,7 +61,7 @@ namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Repositories
                 param.Add("@_layer_group_id", layerGroupId, DbType.Guid, ParameterDirection.Input);
 
                 var layers = await Connection.QueryAsync<Layer>(
-                    sql: $"{_platformDbConfig.MapConfigurationSchemaName}.{_platformDbConfig.MapConfigurationFunctionMap["GetLayersByGroupId"]}",
+                    sql: $"{_dbSettings.MapConfigurationSchemaName}.{_dbSettings.MapConfigurationFunctionMap["GetLayersByGroupId"]}",
                     param: param,
                     commandType: CommandType.StoredProcedure,
                     commandTimeout: 900);
@@ -95,7 +103,7 @@ namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Repositories
                 param.Add("@_id", configId, DbType.Guid, ParameterDirection.Input);
 
                 var layers = await Connection.QueryAsync<Layer>(
-                    sql: $"{_platformDbConfig.MapConfigurationSchemaName}.{_platformDbConfig.MapConfigurationFunctionMap["GetLayersByMapConfigId"]}",
+                    sql: $"{_dbSettings.MapConfigurationSchemaName}.{_dbSettings.MapConfigurationFunctionMap["GetLayersByMapConfigId"]}",
                     param: param,
                     commandType: CommandType.StoredProcedure,
                     commandTimeout: 900);
@@ -138,7 +146,7 @@ namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Repositories
                 param.Add("@_config_id", mapConfigId, DbType.Guid, ParameterDirection.Input);
                 
                 var layer = await Connection.QueryAsync<Layer>(
-                    sql: $"{_platformDbConfig.MapConfigurationSchemaName}.{_platformDbConfig.MapConfigurationFunctionMap["GetLayerByMapConfigIdAndLayerId"]}",
+                    sql: $"{_dbSettings.MapConfigurationSchemaName}.{_dbSettings.MapConfigurationFunctionMap["GetLayerByMapConfigIdAndLayerId"]}",
                     param: param,
                     commandType: CommandType.StoredProcedure,
                     commandTimeout: 900);
@@ -181,7 +189,7 @@ namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Repositories
             p.Add("@_layer_id", layerId, DbType.Guid, ParameterDirection.Input);
 
             var sourceProperties = Connection.Query(
-                sql: $"{_platformDbConfig.MapConfigurationSchemaName}.{_platformDbConfig.MapConfigurationFunctionMap["GetSourcePropertiesByLayerId"]}",
+                sql: $"{_dbSettings.MapConfigurationSchemaName}.{_dbSettings.MapConfigurationFunctionMap["GetSourcePropertiesByLayerId"]}",
                 param: p,
                 commandType: CommandType.StoredProcedure,
                 commandTimeout: 900);

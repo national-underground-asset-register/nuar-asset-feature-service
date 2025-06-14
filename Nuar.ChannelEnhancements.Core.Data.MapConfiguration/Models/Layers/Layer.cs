@@ -8,7 +8,7 @@ namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Models.Layers
         /// <summary>
         /// Gets or sets the unique identifier for the layer.
         /// </summary>
-        [Column("")]
+        [Column("id")]
         [JsonRequired]
         [JsonProperty("id", Required = Required.Always)]
         public required Guid Id { get; set; }
@@ -16,21 +16,21 @@ namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Models.Layers
         /// <summary>
         /// Gets or sets the layer group Id.
         /// </summary>
-        [Column("")]
+        [Column("layer_group_id")]
         [JsonProperty(PropertyName = "layerGroup")]
         public Guid LayerGroupId { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the layer.
         /// </summary>
-        [Column("")]
+        [Column("name")]
         [JsonProperty(PropertyName = "assetType")]
         public required string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the display name in welsh
         /// </summary>
-        [Column("")]
+        [Column("display_name_cym")]
         [JsonIgnore]
         public string? DisplayNameCym { get; set; }
 
@@ -40,7 +40,7 @@ namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Models.Layers
         /// <remarks>
         /// This is required so we can always generate a valid display name JSON object
         /// </remarks>
-        [Column("")]
+        [Column("display_name_eng")]
         [JsonIgnore]
         public required string DisplayNameEng { get; set; }
 
@@ -60,14 +60,14 @@ namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Models.Layers
         /// <summary>
         /// Gets or sets the description for the layer.
         /// </summary>
-        [Column("")]
+        [Column("description")]
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string? Description { get; set; }
 
         /// <summary>
         /// Gets or sets the order this is displayed in
         /// </summary>
-        [Column("")]
+        [Column("display_order")]
         [JsonRequired]
         [JsonProperty("displayOrder", Required = Required.DisallowNull)]
         public required int DisplayOrder { get; set; } = 0;
@@ -75,7 +75,7 @@ namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Models.Layers
         /// <summary>
         /// Gets or sets the source type
         /// </summary>
-        [Column("")]
+        [Column("source_type")]
         [JsonRequired]
         [JsonProperty("sourceType", Required = Required.DisallowNull)]
         public required string SourceType { get; set; }
@@ -87,28 +87,27 @@ namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Models.Layers
         /// Each key is a property name and the value is the property value. Properties can be any valid OpenLayers source property for the type
         /// of data being loaded. For example, for a WMS layer, you might have properties like "url", "params", etc.
         /// </remarks>
-        [Column("")]
         [JsonProperty("sourceProperties", NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, string>? SourceProperties { get; set; }
 
         /// <summary>
         /// Gets or sets the minimum scale for layer display
         /// </summary>
-        [Column("")]
+        [Column("minimum_scale")]
         [JsonProperty("minimumScale", NullValueHandling = NullValueHandling.Ignore)]
         public int MinimumScale { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum scale for layer display
         /// </summary>
-        [Column("")]
+        [Column("maximum_scale")]
         [JsonProperty("maximumScale", NullValueHandling = NullValueHandling.Ignore)]
         public int MaximumScale { get; set; }
 
         /// <summary>
         /// Gets or sets whether the layer is selected by default
         /// </summary>
-        [Column("")]
+        [Column("is_checked_by_default")]
         [JsonProperty("isCheckedByDefault", Required = Required.DisallowNull)]
         public bool IsCheckedByDefault { get; set; } = false;
 
@@ -118,7 +117,6 @@ namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Models.Layers
         /// <remarks>
         /// This could be null if the layer source does not have attributes, for example raster layer sources
         /// </remarks>
-        [Column("")]
         [JsonProperty("styleRules", NullValueHandling = NullValueHandling.Ignore)]
         public List<Styles.StyleRule>? StyleRules { get; set; } = new List<Styles.StyleRule>();
 
@@ -128,7 +126,6 @@ namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Models.Layers
         /// <remarks>
         /// This could be null if the layer source does not have attributes, for example raster layer sources
         /// </remarks>
-        [Column("")]
         [JsonProperty("attributes", NullValueHandling = NullValueHandling.Ignore)]
         public List<Attributes.LayerAttribute>? Attributes { get; set; }
     }
