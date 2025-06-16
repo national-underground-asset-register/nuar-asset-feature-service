@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuar.ChannelEnhancements.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuar.ChannelEnhancements.Web.Api.Features", "Nuar.ChannelEnhancements.Web.Api.Features\Nuar.ChannelEnhancements.Web.Api.Features.csproj", "{D1B78B4B-99C4-4F18-8B69-84C5A20C009D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuar.ChannelEnhancements.Core.Data.Test", "Nuar.ChannelEnhancements.Core.Data.Test\Nuar.ChannelEnhancements.Core.Data.Test.csproj", "{90C19810-443A-45B4-9EE6-E7D416D23AFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D1B78B4B-99C4-4F18-8B69-84C5A20C009D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1B78B4B-99C4-4F18-8B69-84C5A20C009D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1B78B4B-99C4-4F18-8B69-84C5A20C009D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90C19810-443A-45B4-9EE6-E7D416D23AFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90C19810-443A-45B4-9EE6-E7D416D23AFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90C19810-443A-45B4-9EE6-E7D416D23AFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90C19810-443A-45B4-9EE6-E7D416D23AFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

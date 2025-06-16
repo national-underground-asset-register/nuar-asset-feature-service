@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hend2080\\source\\repos\\NUAR-OpenSource\\nuar-asset-feature-service\\Nuar.ChannelEnhancements.Web.Api.Features\\Nuar.ChannelEnhancements.Web.Api.Features.csproj": {}
+    "C:\\Users\\colin\\Source\\repos\\nuar-asset-feature-service\\Nuar.ChannelEnhancements.Web.Api.Features\\Nuar.ChannelEnhancements.Web.Api.Features.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hend2080\\source\\repos\\NUAR-OpenSource\\nuar-asset-feature-service\\Nuar.ChannelEnhancements.Web.Api.Features\\Nuar.ChannelEnhancements.Web.Api.Features.csproj": {
+    "C:\\Users\\colin\\Source\\repos\\nuar-asset-feature-service\\Nuar.ChannelEnhancements.Web.Api.Features\\Nuar.ChannelEnhancements.Web.Api.Features.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hend2080\\source\\repos\\NUAR-OpenSource\\nuar-asset-feature-service\\Nuar.ChannelEnhancements.Web.Api.Features\\Nuar.ChannelEnhancements.Web.Api.Features.csproj",
+        "projectUniqueName": "C:\\Users\\colin\\Source\\repos\\nuar-asset-feature-service\\Nuar.ChannelEnhancements.Web.Api.Features\\Nuar.ChannelEnhancements.Web.Api.Features.csproj",
         "projectName": "Nuar.ChannelEnhancements.Web.Api.Features",
-        "projectPath": "C:\\Users\\hend2080\\source\\repos\\NUAR-OpenSource\\nuar-asset-feature-service\\Nuar.ChannelEnhancements.Web.Api.Features\\Nuar.ChannelEnhancements.Web.Api.Features.csproj",
-        "packagesPath": "C:\\Users\\hend2080\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hend2080\\source\\repos\\NUAR-OpenSource\\nuar-asset-feature-service\\Nuar.ChannelEnhancements.Web.Api.Features\\obj\\",
+        "projectPath": "C:\\Users\\colin\\Source\\repos\\nuar-asset-feature-service\\Nuar.ChannelEnhancements.Web.Api.Features\\Nuar.ChannelEnhancements.Web.Api.Features.csproj",
+        "packagesPath": "C:\\Users\\colin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\colin\\Source\\repos\\nuar-asset-feature-service\\Nuar.ChannelEnhancements.Web.Api.Features\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\hend2080\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\colin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -27,8 +27,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://pkgs.dev.azure.com/software-and-systems/_packaging/Atkins.AdstSde.Nuget/nuget/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
@@ -46,7 +45,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net9.0": {
@@ -54,11 +53,11 @@
           "dependencies": {
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
-              "version": "[9.0.5, )"
+              "version": "[9.0.6, )"
             },
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
-              "version": "[1.21.0, )"
+              "version": "[1.21.2, )"
             }
           },
           "imports": [
@@ -80,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
