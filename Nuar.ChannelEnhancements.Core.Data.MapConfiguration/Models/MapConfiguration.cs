@@ -1,4 +1,6 @@
-﻿namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Models
+﻿using Newtonsoft.Json;
+
+namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Models
 {
     /// <summary>
     /// A <see cref="MapConfiguration"/> class which is the root element of a complete map configuration object

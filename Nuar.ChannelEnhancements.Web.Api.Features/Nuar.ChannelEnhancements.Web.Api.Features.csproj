@@ -9,8 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.6" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Redoc.AspNetCore" Version="1.0.0" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.4.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nuar.ChannelEnhancements.Core.Data.Features\Nuar.ChannelEnhancements.Core.Data.Features.csproj" />
+    <ProjectReference Include="..\Nuar.ChannelEnhancements.Core.Data.MapConfiguration\Nuar.ChannelEnhancements.Core.Data.MapConfiguration.csproj" />
   </ItemGroup>
 
 </Project>

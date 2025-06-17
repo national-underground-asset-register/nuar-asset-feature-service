@@ -1,4 +1,6 @@
-﻿namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Models
+﻿using Newtonsoft.Json;
+
+namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Models
 {
     public class MapView
     {

@@ -98,4 +98,39 @@ public class LayerGroupRepository : QueryBase, ILayerGroupRepository
             return null;
         }
     }
+
+    /// <inheritdoc />
+    public async Task<IEnumerable<LayerGroup>?> GetChildLayerGroups(Guid parentGroupId)
+    {
+        try
+        {
+            if (Connection == null)
+            {
+                throw new InvalidOperationException($"{nameof(Connection)} is null. Ensure the database connection is properly initialized.");
+            }
+
+            var p = new DynamicParameters();
+            p.Add("@_parent_group_id", parentGroupId, DbType.Guid, ParameterDirection.Input);
+
+            var layerGroups = await Connection.QueryAsync<LayerGroup>(
+                sql: $"{_dbSettings.MapConfigurationSchemaName}.{_dbSettings.MapConfigurationFunctionMap["GetChildLayerGroupsByParentId"]}",
+                param: p,
+                commandType: CommandType.StoredProcedure,
+                commandTimeout: 900);
+
+            // Convert the result to a list for further processing
+            var resultLayerGroups = layerGroups.ToList();
+
+            if (resultLayerGroups.Count > 0) return resultLayerGroups;
+
+            // If no layer groups are found, return null
+            Log.Information($"{nameof(LayerGroupRepository.GetChildLayerGroups)} - Layer Group [{parentGroupId}] does not have any children.");
+            return null;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }

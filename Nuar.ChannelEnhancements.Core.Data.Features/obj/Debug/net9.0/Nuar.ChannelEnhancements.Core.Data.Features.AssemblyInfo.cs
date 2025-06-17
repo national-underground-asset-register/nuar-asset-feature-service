@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Nuar.ChannelEnhancements.Core.Data.Features")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+68f42c9f414788f05dd9f4c654f59da7521bed7c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2893e7746389bb917d5e2d98e57a8a1bd86dd410")]
 [assembly: System.Reflection.AssemblyProductAttribute("Nuar.ChannelEnhancements.Core.Data.Features")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Nuar.ChannelEnhancements.Core.Data.Features")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

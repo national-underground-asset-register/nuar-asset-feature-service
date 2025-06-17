@@ -57,8 +57,19 @@ namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Repositories
 
             try
             {
+                // Prepare parameters to get the layer group by its identifier
                 var param = new DynamicParameters();
                 param.Add("@_layer_group_id", layerGroupId, DbType.Guid, ParameterDirection.Input);
+
+                // Execute the stored procedure to get the layer group
+                var layerGroup = await Connection.QueryFirstOrDefaultAsync<LayerGroup>(
+                    sql: $"{_dbSettings.MapConfigurationSchemaName}.{_dbSettings.MapConfigurationFunctionMap["GetLayerGroupById"]}",
+                    param: param,
+                    commandType: CommandType.StoredProcedure,
+                    commandTimeout: 900);
+
+                // Return null if no layer group found
+                if (layerGroup == null) return null;
 
                 var layers = await Connection.QueryAsync<Layer>(
                     sql: $"{_dbSettings.MapConfigurationSchemaName}.{_dbSettings.MapConfigurationFunctionMap["GetLayersByGroupId"]}",
@@ -74,7 +85,7 @@ namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Repositories
                 // Populate source properties for each layer
                 foreach (var layer in layerList)
                 {
-                    layer.SourceProperties = GetSourceProperties(layer.Id);
+                    layer.SourceProperties = GetSourceProperties(layer.Id, layerGroup.MapConfigId);
                     layer.Attributes = (await _attributeRepository.GetAllByLayerId(layer.Id))?.ToList();
                     layer.StyleRules = (await _styleRuleRepository.GetAllByLayerId(layer.Id))?.ToList();
                 }
@@ -116,7 +127,7 @@ namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Repositories
                 // Populate source properties for each layer
                 foreach (var layer in layerList)
                 {
-                    layer.SourceProperties = GetSourceProperties(layer.Id);
+                    layer.SourceProperties = GetSourceProperties(layer.Id, configId);
                     layer.Attributes = (await _attributeRepository.GetAllByLayerId(layer.Id))?.ToList();
                     layer.StyleRules = (await _styleRuleRepository.GetAllByLayerId(layer.Id))?.ToList();
                 }
@@ -158,7 +169,7 @@ namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Repositories
                 if (returnLayer == null) return returnLayer;
 
                 // If a layer was found, populate its source properties and attributes
-                returnLayer.SourceProperties = GetSourceProperties(layerId);
+                returnLayer.SourceProperties = GetSourceProperties(layerId, mapConfigId);
                 returnLayer.Attributes = (await _attributeRepository.GetAllByLayerId(layerId))?.ToList();
                 returnLayer.StyleRules = (await _styleRuleRepository.GetAllByLayerId(layerId))?.ToList();
 
@@ -175,9 +186,10 @@ namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Repositories
         /// Retrieves the source properties for a layer by its identifier.
         /// </summary>
         /// <param name="layerId">The identifier of the layer</param>
+        /// <param name="mapConfigId">The identifier of the map configuration</param>
         /// <returns>A dictionary of key/value pairs, or null if layer has no source properties</returns>
         /// <exception cref="Exception">Thrown if any exception occurs</exception>
-        private Dictionary<string, string>? GetSourceProperties(Guid layerId)
+        private Dictionary<string, string>? GetSourceProperties(Guid layerId, Guid mapConfigId)
         {
             // Ensure the Connection object is not null before using it
             if (Connection == null)
@@ -187,6 +199,7 @@ namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Repositories
 
             var p = new DynamicParameters();
             p.Add("@_layer_id", layerId, DbType.Guid, ParameterDirection.Input);
+            p.Add("@_map_config_id", mapConfigId, DbType.Guid, ParameterDirection.Input);
 
             var sourceProperties = Connection.Query(
                 sql: $"{_dbSettings.MapConfigurationSchemaName}.{_dbSettings.MapConfigurationFunctionMap["GetSourcePropertiesByLayerId"]}",
@@ -196,16 +209,18 @@ namespace Nuar.ChannelEnhancements.Core.Data.MapConfiguration.Repositories
 
             // Return null if no properties fetched from the database
             var properties = sourceProperties.ToList();
-
             if (properties.Count == 0) return null;
 
             Dictionary<string, string> sourcePropertiesDict = new();
             foreach (var property in properties)
             {
-                if (property != null)
+                if (property is IDictionary<string, object> dict)
                 {
-                    var key = property.Key.ToString();
-                    var value = property.Value?.ToString();
+                    // Try to get "key" and "value" (case-insensitive)
+                    var keyObj = dict.FirstOrDefault(kv => string.Equals(kv.Key, "key", StringComparison.OrdinalIgnoreCase)).Value;
+                    var valueObj = dict.FirstOrDefault(kv => string.Equals(kv.Key, "value", StringComparison.OrdinalIgnoreCase)).Value;
+                    var key = keyObj?.ToString();
+                    var value = valueObj?.ToString();
                     if (!string.IsNullOrEmpty(key))
                     {
                         sourcePropertiesDict[key] = value;
