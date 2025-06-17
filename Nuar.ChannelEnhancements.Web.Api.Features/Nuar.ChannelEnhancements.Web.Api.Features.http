@@ -1,0 +1,6 @@
+@Nuar.ChannelEnhancements.Web.Api.Features_HostAddress = http://localhost:5073
+
+GET {{Nuar.ChannelEnhancements.Web.Api.Features_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

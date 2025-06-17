@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.36105.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuar.ChannelEnhancements.Core.Data.MapConfiguration", "Nuar.ChannelEnhancements.Core.Data.MapConfiguration\Nuar.ChannelEnhancements.Core.Data.MapConfiguration.csproj", "{12A51A57-1E6A-4D4B-AB41-F27EAFDEDA63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuar.ChannelEnhancements.Core.Data.Features", "Nuar.ChannelEnhancements.Core.Data.Features\Nuar.ChannelEnhancements.Core.Data.Features.csproj", "{C996536A-2DB8-4CD0-847D-83C2FF6BCC4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuar.ChannelEnhancements.Web.Api.Features", "Nuar.ChannelEnhancements.Web.Api.Features\Nuar.ChannelEnhancements.Web.Api.Features.csproj", "{D1B78B4B-99C4-4F18-8B69-84C5A20C009D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuar.ChannelEnhancements.Core.Data.Test", "Nuar.ChannelEnhancements.Core.Data.Test\Nuar.ChannelEnhancements.Core.Data.Test.csproj", "{90C19810-443A-45B4-9EE6-E7D416D23AFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12A51A57-1E6A-4D4B-AB41-F27EAFDEDA63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12A51A57-1E6A-4D4B-AB41-F27EAFDEDA63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12A51A57-1E6A-4D4B-AB41-F27EAFDEDA63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12A51A57-1E6A-4D4B-AB41-F27EAFDEDA63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C996536A-2DB8-4CD0-847D-83C2FF6BCC4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C996536A-2DB8-4CD0-847D-83C2FF6BCC4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C996536A-2DB8-4CD0-847D-83C2FF6BCC4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C996536A-2DB8-4CD0-847D-83C2FF6BCC4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1B78B4B-99C4-4F18-8B69-84C5A20C009D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1B78B4B-99C4-4F18-8B69-84C5A20C009D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1B78B4B-99C4-4F18-8B69-84C5A20C009D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1B78B4B-99C4-4F18-8B69-84C5A20C009D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90C19810-443A-45B4-9EE6-E7D416D23AFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90C19810-443A-45B4-9EE6-E7D416D23AFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90C19810-443A-45B4-9EE6-E7D416D23AFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90C19810-443A-45B4-9EE6-E7D416D23AFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D2EE954D-8CB3-4B31-8D08-1FB27B9CF76B}
+	EndGlobalSection
+EndGlobal
