@@ -1,6 +1,7 @@
 # Example NUAR Asset Feature Service
 ## V1.0.0
 
+**Ths is a very early open source version of the NUAR Asset Feature Service. It should be considered alpha and is not yet OGC compliant. This repo will be updated in sync with the core development of the NUAR Channel Enhancements project.**
 An implementation of an OGC API - Features compliant service that serves features from a database conforming to the NUAR Harmonised Data Model
 
 ## Licence
